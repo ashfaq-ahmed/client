@@ -11,16 +11,20 @@ import { PartnersService } from '../shared/services/partners/partners.service';
   styleUrls: ['./partners.component.scss']
 })
 export class PartnersComponent implements OnInit {
+  // partners being shown in list
   partners: Array<Office> = [];
+
+  // markers being displayed
   markersMap: any = {};
   panelClosed: boolean =  false; // search panel closed in mobile
   filtersForm: FormGroup = new FormGroup({
     radius: new FormControl(100, [Validators.required, Validators.min(1)])
   });
 
-  
+  // circle showing the radius
   circle = circle([ 51.5144636, -0.142571 ], { radius: this.radius * 1000 });
 
+  // leaflet map options
   options = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
@@ -62,7 +66,7 @@ export class PartnersComponent implements OnInit {
         this.partners.map(partner => {
           this.markersMap[`${partner.id}-${partner.offices.location}`] = marker(latLng(partner.offices.coordinates.lat, partner.offices.coordinates.lon), {
             icon: this.createIcon(false),
-          })
+          }).bindPopup(`<p>${partner.organization}</p>`)
         })
       })
   }
