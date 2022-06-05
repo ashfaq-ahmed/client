@@ -1,0 +1,9 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+@include media-breakpoint-down(md) {
+    article {
+        .services, hr {
+            display: none;
+        }
+    }
+}

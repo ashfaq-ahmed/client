@@ -1,0 +1,100 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+.partners {
+    display: flex;
+    height: calc(100vh - 57px);
+    &--toggle-control {
+        display: none;
+    }
+    &--list {
+        flex: 1;
+        overflow-y: auto;
+        box-sizing: border-box;
+        overflow-y: auto;
+        &--content {
+            &--header {
+                .btn-close {
+                    display: none;
+                }
+            }
+            &--list {
+                overflow-y: auto;
+            }
+        }
+
+        .filters {
+            &--form {
+                display: flex;
+                column-gap: 5px;
+                align-items: flex-end;
+            }
+        }
+    }
+
+    &--map {
+        .map {
+            height: 100%;
+            ::ng-deep {
+                .leaflet-pane.leaflet-shadow-pane {
+                    display: none;
+                }
+            }
+        }
+        flex: 1
+    }
+} 
+
+@include media-breakpoint-down(md) {
+    .partners {
+        &--toggle-control {
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        display: block;
+        &--list {
+            &.closed {
+                left: -100%;
+            }
+            flex: none;
+            position: absolute;
+            bottom: 10px;
+            z-index: 1000;
+            width: calc(100% - 20px);
+            left: 10px;
+            background: white;
+            &--content {
+                &--header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .btn-close {
+                        display: block;
+                    }
+                }
+                &--list {
+                    display: flex;
+                    column-gap: 10px;
+                    max-width: 100%;
+                    overflow-x: auto;
+                    app-office-card {
+                        display: block;
+                        flex-shrink: 0 ;
+                    }
+                }
+            }
+
+            .filters {
+                botton[type=submit] {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+        &--map {
+            height: 100%
+        }
+    }
+}
